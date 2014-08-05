@@ -1,8 +1,6 @@
-As of at least Rails 4.1.4 and earlier, if prepared_statements are disabled in config/database.yml for PostgreSQL, columns of type numeric(32,0) cannot be written to.
+## Bad behavior:
 
-To reproduce:
-
-Set this project up as you usually would (clone, create database, migrate). Then at the console, execute:
+# From *rails console*
 
     Loading development environment (Rails 4.1.4)
     2.0.0-p451 :001 > BugFix.create! big: 5959852248567281390
@@ -42,5 +40,22 @@ Set this project up as you usually would (clone, create database, migrate). Then
     	from /home/vagrant/.rvm/rubies/ruby-2.0.0-p451/lib/ruby/site_ruby/2.0.0/rubygems/core_ext/kernel_require.rb:55:in `require'
     	from /home/vagrant/.rvm/rubies/ruby-2.0.0-p451/lib/ruby/site_ruby/2.0.0/rubygems/core_ext/kernel_require.rb:55:in `require'
 
-Then, go to config/database.yml, and change "prepared_statements:false" to "prepared_statements:true"
+## Problem disappears with enabled *prepared_statements*
 
+# Change *config/database.yml* from
+
+    # prepared_statements: true
+    prepared_statements: false
+
+# To
+
+    prepared_statements: true
+    # prepared_statements: false
+
+# Restart *rails console*
+
+    2.0.0-p451 :013 >   BugFix.create! big: 5959852248567281390
+       (0.4ms)  BEGIN
+      SQL (12.3ms)  INSERT INTO "bug_fixes" ("big") VALUES ($1) RETURNING "id"  [["big", 5959852248567281390]]
+       (1.1ms)  COMMIT
+     => #<BugFix id: 1, big: 5959852248567281390>
