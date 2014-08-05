@@ -1,6 +1,6 @@
-## Bad behavior:
+# Bad behavior:
 
-# From _rails console_
+## From **rails consol**
 
     Loading development environment (Rails 4.1.4)
     2.0.0-p451 :001 > BugFix.create! big: 5959852248567281390
@@ -40,19 +40,19 @@
     	from /home/vagrant/.rvm/rubies/ruby-2.0.0-p451/lib/ruby/site_ruby/2.0.0/rubygems/core_ext/kernel_require.rb:55:in `require'
     	from /home/vagrant/.rvm/rubies/ruby-2.0.0-p451/lib/ruby/site_ruby/2.0.0/rubygems/core_ext/kernel_require.rb:55:in `require'
 
-## Problem disappears with enabled _prepared_statements_
+# Problem disappears with enabled **prepared_statements**
 
-# Change _config/database.yml_ from
+## Change **config/database.yml** from
 
     # prepared_statements: true
     prepared_statements: false
 
-# To
+## To
 
     prepared_statements: true
     # prepared_statements: false
 
-# Restart *rails console*
+# Restart **rails console**
 
     2.0.0-p451 :013 >   BugFix.create! big: 5959852248567281390
        (0.4ms)  BEGIN
