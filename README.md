@@ -1,9 +1,9 @@
 # Bad behavior:
 
-## From **rails consol**
+## From **rails console**
 
     Loading development environment (Rails 4.1.4)
-    2.0.0-p451 :001 > BugFix.create! big: 5959852248567281390
+    2.0.0-p451 :001 > **BugFix.create! big: 5959852248567281390**
        (0.2ms)  BEGIN
        (0.3ms)  ROLLBACK
     ActiveRecord::ActiveRecordError: No integer type has byte size 32. Use a numeric with precision 0 instead.
@@ -54,7 +54,7 @@
 
 # Restart **rails console**
 
-    2.0.0-p451 :013 >   BugFix.create! big: 5959852248567281390
+    2.0.0-p451 :013 >   **BugFix.create! big: 5959852248567281390**
        (0.4ms)  BEGIN
       SQL (12.3ms)  INSERT INTO "bug_fixes" ("big") VALUES ($1) RETURNING "id"  [["big", 5959852248567281390]]
        (1.1ms)  COMMIT
