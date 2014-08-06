@@ -1,3 +1,4 @@
+# Note: this doesn't seem to happen in edge rails, only in 4.1.4
 # Bad behavior:
 
 ## From **rails console**
